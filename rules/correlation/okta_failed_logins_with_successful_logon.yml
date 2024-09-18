@@ -1,0 +1,31 @@
+title: Okta Policy Failed Logins
+id: 0c97c1d3-4057-45c9-b148-1de94b631932
+logsource:
+  product: okta
+  service: okta
+detection:
+  selection:
+    outcome.result: FAILURE
+    eventtype: user.session.start
+  condition: selection
+---
+title: Okta Policy Successful First Factor
+id: 10c7c1d3-4057-45c9-b148-1de94b631932
+logsource:
+  product: okta
+  service: okta
+detection:
+  selection:
+    outcome.result: SUCCESS
+    eventtype: user.session.start
+  condition: selection
+---
+title: Multiple failed logons nearby a successful first factor
+correlation:
+  type: temporal
+  rules:
+    - 0c97c1d3-4057-45c9-b148-1de94b631932 # Referenced here
+    - 10c7c1d3-4057-45c9-b148-1de94b631932
+  group-by:
+    - actor.alternateId
+  timespan: 60m

@@ -5,6 +5,14 @@ transformations:
     mapping:
       eventtype: event.action
       email: okta.actor.alternate_id
+      outcome.result: okta.outcome.result
+    rule_conditions:
+      - type: logsource
+        product: okta
+        service: okta
+  - type: set_state
+    key: index
+    val: logs-okta.system-default
     rule_conditions:
       - type: logsource
         product: okta

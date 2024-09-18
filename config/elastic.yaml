@@ -1,0 +1,11 @@
+name: okta_elastic
+priority: 100
+transformations:
+  - type: field_name_mapping
+    mapping:
+      eventtype: event.action
+      email: okta.actor.alternate_id
+    rule_conditions:
+      - type: logsource
+        product: okta
+        service: okta

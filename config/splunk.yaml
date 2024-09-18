@@ -1,0 +1,21 @@
+name: splunk
+priority: 100
+transformations:
+  # Add the `index=okta` prefix to the fule
+  - type: add_condition
+    conditions:
+      index: okta # here
+    rule_conditions:
+      - type: logsource
+        product: okta
+        service: okta
+
+  # Map the fields correctly
+  - type: field_name_mapping
+    mapping:
+      eventtype: eventType
+      email: actor.alternateId
+    rule_conditions:
+      - type: logsource
+        product: okta
+        service: okta

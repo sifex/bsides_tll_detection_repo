@@ -1,15 +1,19 @@
 name: okta_elastic
 priority: 100
 transformations:
+  # Field Mapping
   - type: field_name_mapping
     mapping:
       eventtype: event.action
       email: okta.actor.alternate_id
       outcome.result: okta.outcome.result
+      city_name: client.geo.city_name
     rule_conditions:
       - type: logsource
         product: okta
         service: okta
+
+  # Prefix ESQL with `logs-okta.system-default`
   - type: set_state
     key: index
     val: logs-okta.system-default

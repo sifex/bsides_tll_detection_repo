@@ -1,0 +1,27 @@
+title: Filter Out Known Countries
+description: Filter out countries in which we operate in.
+id: 0c97c1d3-4057-45c9-b148-1de94b631934
+logsource:
+  product: okta
+  service: okta
+filter:
+  rules:
+    - okta_successful_first_factor
+  selection:
+    city_name:
+      - "Tallinn"
+  condition: not selection
+---
+title: Filter Out Known Countries
+description: Filter out countries in which we operate in.
+id: 1c97c1d3-4057-45c9-b148-1de94b631934
+logsource:
+  product: okta
+  service: okta
+filter:
+  rules:
+    - okta_failed_login
+  selection:
+    city_name:
+      - "Tallinn"
+  condition: not selection

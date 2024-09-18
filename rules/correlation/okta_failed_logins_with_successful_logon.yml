@@ -1,4 +1,5 @@
-title: Okta Policy Failed Logins
+title: Okta Failed Logins
+name: okta_failed_login
 id: 0c97c1d3-4057-45c9-b148-1de94b631932
 logsource:
   product: okta
@@ -9,7 +10,8 @@ detection:
     eventtype: user.session.start
   condition: selection
 ---
-title: Okta Policy Successful First Factor
+title: Okta Successful First Factor
+name: okta_successful_first_factor
 id: 10c7c1d3-4057-45c9-b148-1de94b631932
 logsource:
   product: okta
